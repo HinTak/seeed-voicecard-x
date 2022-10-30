@@ -1291,7 +1291,6 @@ static const struct snd_soc_codec_driver soc_codec_dev_wm8960 = {
 	.idle_bias_on		= 1,
 	.use_pmdown_time	= 1,
 	.endianness		= 1,
-	.non_legacy_dai_naming	= 1,
 	#endif
 };
 
