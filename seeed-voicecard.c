@@ -886,7 +886,9 @@ static int seeed_voice_card_remove(struct platform_device *pdev)
 
 	if (cancel_work_sync(&priv->work_codec_clk) != 0) {
 	}
-	return asoc_simple_clean_reference(card);
+	asoc_simple_clean_reference(card);
+
+	return 0;
 }
 
 static const struct of_device_id seeed_voice_of_match[] = {
