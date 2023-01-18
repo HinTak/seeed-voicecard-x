@@ -1493,7 +1493,7 @@ __ret:
 	return ret;
 }
 
-static int ac108_i2c_remove(struct i2c_client *i2c) {
+static void ac108_i2c_remove(struct i2c_client *i2c) {
 	if (ac10x->codec != NULL) {
 		snd_soc_unregister_codec(&ac10x->i2c[_MASTER_INDEX]->dev);
 		ac10x->codec = NULL;
@@ -1518,7 +1518,6 @@ __ret:
 		kfree(ac10x);
 		ac10x = NULL;
 	}
-	return 0;
 }
 
 static const struct i2c_device_id ac108_i2c_id[] = {
