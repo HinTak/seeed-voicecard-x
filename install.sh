@@ -106,6 +106,8 @@ if [[ $? -eq 0 ]]; then
   apt update -y
   # Raspbian kernel packages
   apt-get -y install raspberrypi-kernel-headers raspberrypi-kernel 
+  # Recent Raspbian has 64-bit kernel on 32-bit userspace
+  apt-get -y install gcc-aarch64-linux-gnu
   # Ubuntu kernel packages
   apt-get -y install linux-raspi linux-headers-raspi linux-image-raspi
   apt-get -y install dkms git i2c-tools libasound2-plugins
