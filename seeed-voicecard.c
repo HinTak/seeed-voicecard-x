@@ -220,7 +220,7 @@ static int seeed_voice_card_trigger(struct snd_pcm_substream *substream, int cmd
 
 	dev_dbg(rtd->card->dev, "%s() stream=%s  cmd=%d play:%d, capt:%d\n",
 		__FUNCTION__, snd_pcm_stream_str(substream), cmd,
-		dai->stream_active[SNDRV_PCM_STREAM_PLAYBACK], dai->stream_active[SNDRV_PCM_STREAM_CAPTURE]);
+		dai->stream[SNDRV_PCM_STREAM_PLAYBACK].active, dai->stream[SNDRV_PCM_STREAM_CAPTURE].active);
 
 	switch (cmd) {
 	case SNDRV_PCM_TRIGGER_START:
@@ -242,7 +242,7 @@ static int seeed_voice_card_trigger(struct snd_pcm_substream *substream, int cmd
 	case SNDRV_PCM_TRIGGER_SUSPEND:
 	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
 		/* capture channel resync, if overrun */
-		if (dai->stream_active[SNDRV_PCM_STREAM_CAPTURE] && substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
+		if (dai->stream[SNDRV_PCM_STREAM_CAPTURE].active && substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
 			break;
 		}
 
@@ -262,7 +262,7 @@ static int seeed_voice_card_trigger(struct snd_pcm_substream *substream, int cmd
 
 	dev_dbg(rtd->card->dev, "%s() stream=%s  cmd=%d play:%d, capt:%d;finished %d\n",
 		__FUNCTION__, snd_pcm_stream_str(substream), cmd,
-		dai->stream_active[SNDRV_PCM_STREAM_PLAYBACK], dai->stream_active[SNDRV_PCM_STREAM_CAPTURE], ret);
+		dai->stream[SNDRV_PCM_STREAM_PLAYBACK].active, dai->stream[SNDRV_PCM_STREAM_CAPTURE].active, ret);
 
 	return ret;
 }
