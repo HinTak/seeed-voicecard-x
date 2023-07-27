@@ -396,8 +396,8 @@ static int asoc_simple_init_dai_link_params(struct snd_soc_pcm_runtime *rtd)
 	params->channels_min = hw.channels_min;
 	params->channels_max = hw.channels_max;
 
-	dai_link->params = params;
-	dai_link->num_params = 1;
+	dai_link->c2c_params = params;
+	dai_link->num_c2c_params = 1;
 
 	return 0;
 }
