@@ -14,6 +14,7 @@ fi
 uname_r=$(uname -r)
 
 CONFIG=/boot/config.txt
+[ -f /boot/firmware/config.txt ] && CONFIG=/boot/firmware/config.txt
 [ -f /boot/firmware/usercfg.txt ] && CONFIG=/boot/firmware/usercfg.txt
 
 get_overlay() {
@@ -70,7 +71,7 @@ rm -rf  /etc/voicecard/ || true
 
 echo "disabled seeed-voicecard.service "
 systemctl stop seeed-voicecard.service
-systemctl disable seeed-voicecard.service 
+systemctl disable seeed-voicecard.service
 
 echo "remove seeed-voicecard"
 rm  /usr/bin/seeed-voicecard || true

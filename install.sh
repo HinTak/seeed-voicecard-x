@@ -26,7 +26,7 @@ fi
 
 #
 # make sure that we are on something ARM/Raspberry related
-# either a bare metal Raspberry or a qemu session with 
+# either a bare metal Raspberry or a qemu session with
 # Raspberry stuff available
 # - check for /boot/overlays
 # - dtparam and dtoverlay is available
@@ -107,7 +107,7 @@ which apt &>/dev/null
 if [[ $? -eq 0 ]]; then
   apt update -y
   # Raspbian kernel packages
-  apt-get -y install raspberrypi-kernel-headers raspberrypi-kernel 
+  apt-get -y install raspberrypi-kernel-headers raspberrypi-kernel
   # Recent Raspbian has 64-bit kernel on 32-bit userspace
   apt-get -y install gcc-aarch64-linux-gnu
   # Ubuntu kernel packages
@@ -177,10 +177,11 @@ grep -q "^snd-soc-seeed-voicecard$" /etc/modules || \
 grep -q "^snd-soc-ac108$" /etc/modules || \
   echo "snd-soc-ac108" >> /etc/modules
 grep -q "^snd-soc-wm8960$" /etc/modules || \
-  echo "snd-soc-wm8960" >> /etc/modules  
+  echo "snd-soc-wm8960" >> /etc/modules
 
 #set dtoverlays
 CONFIG=/boot/config.txt
+[ -f /boot/firmware/config.txt ] && CONFIG=/boot/firmware/config.txt
 [ -f /boot/firmware/usercfg.txt ] && CONFIG=/boot/firmware/usercfg.txt
 
 sed -i -e 's:#dtparam=i2c_arm=on:dtparam=i2c_arm=on:g'  $CONFIG || true
@@ -213,7 +214,7 @@ git --git-dir=/etc/voicecard/.git --work-tree=/etc/voicecard/ commit  -m "origin
 
 cp seeed-voicecard /usr/bin/
 cp seeed-voicecard.service /lib/systemd/system/
-systemctl enable  seeed-voicecard.service 
+systemctl enable  seeed-voicecard.service
 systemctl start   seeed-voicecard
 
 echo "------------------------------------------------------"
