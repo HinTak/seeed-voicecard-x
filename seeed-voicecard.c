@@ -890,7 +890,7 @@ err:
 	return ret;
 }
 
-static int seeed_voice_card_remove(struct platform_device *pdev)
+static void seeed_voice_card_remove(struct platform_device *pdev)
 {
 	struct snd_soc_card *card = platform_get_drvdata(pdev);
 	struct seeed_card_data *priv = snd_soc_card_get_drvdata(card);
@@ -899,7 +899,7 @@ static int seeed_voice_card_remove(struct platform_device *pdev)
 	}
 	simple_util_clean_reference(card);
 
-	return 0;
+	return;
 }
 
 static const struct of_device_id seeed_voice_of_match[] = {
